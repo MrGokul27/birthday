@@ -1,0 +1,1065 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Happy 26th Birthday✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Ambient Background Canvas (Starlight, Petals, Fireworks, Heart Particles) -->
+    <canvas id="ambient-canvas"></canvas>
+    <canvas id="fx-canvas"></canvas>
+
+    <!-- Ambient Glow Orbs -->
+    <div class="ambient-orbs" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Top HUD: Stage Indicator & Sound Toggle -->
+    <header class="hud-bar">
+      <div class="hud-brand">
+        <span class="sparkle-dot"></span>
+        <span class="hud-title">Supraja’s XXVI</span>
+      </div>
+      <div class="stage-dots" id="stage-dots" aria-label="Surprise progress">
+        <span
+          class="stage-dot active"
+          data-stage="1"
+          title="The Mystery"
+        ></span>
+        <span class="stage-dot" data-stage="2" title="Cupid's Bow"></span>
+        <span class="stage-dot" data-stage="3" title="Turning 26"></span>
+        <span class="stage-dot" data-stage="4" title="Make a Wish"></span>
+        <span class="stage-dot" data-stage="5" title="Pop Balloons"></span>
+        <span class="stage-dot" data-stage="6" title="The Letter"></span>
+      </div>
+      <button
+        id="sound-toggle"
+        class="hud-btn"
+        aria-label="Toggle Sound Effects & Music"
+        title="Toggle Music & Sound"
+      >
+        <span id="sound-icon">🔊</span>
+        <span class="hud-btn-label" id="sound-label">Melody On</span>
+      </button>
+    </header>
+
+    <main class="stage-container">
+      <!-- ==========================================
+         STAGE 1: CURIOSITY LOADING & UNWRAP GIFT
+         ========================================== -->
+      <section id="stage-1" class="stage active">
+        <div class="glass-card stage-1-card">
+          <!-- Curiosity Loading Sub-view -->
+          <div id="curiosity-loader" class="curiosity-wrapper">
+            <div class="luxury-crest">
+              <svg viewBox="0 0 100 100" class="crest-svg">
+                <defs>
+                  <linearGradient
+                    id="goldGrad"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="100%"
+                  >
+                    <stop offset="0%" stop-color="#ffe6a3" />
+                    <stop offset="50%" stop-color="#f3b664" />
+                    <stop offset="100%" stop-color="#ff7eb3" />
+                  </linearGradient>
+                </defs>
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="44"
+                  fill="none"
+                  stroke="url(#goldGrad)"
+                  stroke-width="1.5"
+                  stroke-dasharray="6 4"
+                  class="spin-slow"
+                />
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="36"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.22)"
+                  stroke-width="1"
+                />
+                <path
+                  d="M50 32 C50 32 36 22 28 33 C20 44 33 58 50 70 C67 58 80 44 72 33 C64 22 50 32 50 32 Z"
+                  fill="url(#goldGrad)"
+                  class="pulse-heart-svg"
+                />
+              </svg>
+            </div>
+            <p class="eyebrow-tag" id="curiosity-step-tag">
+              HOLD ON A SECOND...
+            </p>
+            <h1 class="curiosity-title" id="curiosity-text">
+              Wait... do you know what day it is today? 🤫✨
+            </h1>
+            <div class="progress-track">
+              <div class="progress-fill" id="curiosity-progress"></div>
+            </div>
+            <p class="curiosity-subtext" id="curiosity-subtext">
+              Gathering stardust & wrapping something extraordinary...
+            </p>
+          </div>
+
+          <!-- Unwrap Gift Sub-view (Revealed after curiosity loading) -->
+          <div id="unwrap-view" class="unwrap-wrapper hidden">
+            <p class="eyebrow-tag">A SECRET DELIVERY FOR SUPRAJA</p>
+            <h1 class="hero-heading">Something Magical Awaits Inside ✨</h1>
+            <p class="subtitle-text">
+              Someone spent a little extra stardust crafting this just for you.
+              Tap the ribbon to unwrap your surprise!
+            </p>
+
+            <div
+              class="gift-stage"
+              id="gift-box-trigger"
+              role="button"
+              tabindex="0"
+              aria-label="Unwrap Birthday Gift"
+            >
+              <div class="gift-aura"></div>
+              <div class="gift-sparkles">
+                <span>✨</span><span>💖</span><span>🌸</span><span>⭐</span>
+              </div>
+              <div class="gift-box" id="gift-box">
+                <div class="gift-lid" id="gift-lid">
+                  <div class="gift-bow">
+                    <div class="bow-loop bow-left"></div>
+                    <div class="bow-loop bow-right"></div>
+                    <div class="bow-knot"></div>
+                    <div class="bow-tail tail-left"></div>
+                    <div class="bow-tail tail-right"></div>
+                  </div>
+                  <div class="lid-ribbon"></div>
+                </div>
+                <div class="gift-body">
+                  <div class="body-ribbon-v"></div>
+                  <div class="body-ribbon-h"></div>
+                  <div class="gift-tag">For Supraja 💖</div>
+                </div>
+                <div class="gift-inner-glow"></div>
+              </div>
+            </div>
+
+            <div class="unwrap-cta-row">
+              <button id="unwrap-btn" class="luxury-btn pulse-btn">
+                <span>🎀 Tap to Unwrap Your Surprise</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+         STAGE 2: BOW & ARROW - PULL & RELEASE
+         ========================================== -->
+      <section id="stage-2" class="stage">
+        <div class="glass-card bow-stage-card">
+          <div class="bow-header">
+            <p class="eyebrow-tag">UNLOCK HER HEART'S CELEBRATION</p>
+            <h2 class="section-heading">
+              Pull &amp; Release the Golden Arrow 🏹💘
+            </h2>
+            <p class="subtitle-text" id="bow-instruction">
+              Drag the bowstring back (or hold &amp; release) to pierce the
+              glowing crystal heart!
+            </p>
+          </div>
+
+          <div class="archery-arena" id="archery-arena">
+            <!-- Interactive SVG Bow, Arrow, Trajectory & Glowing Target Heart -->
+            <svg
+              id="archery-svg"
+              viewBox="0 0 900 420"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <defs>
+                <linearGradient
+                  id="bowGold"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stop-color="#fff0c2" />
+                  <stop offset="45%" stop-color="#f5b963" />
+                  <stop offset="100%" stop-color="#c97b2b" />
+                </linearGradient>
+                <linearGradient
+                  id="heartRuby"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stop-color="#ff9ebb" />
+                  <stop offset="45%" stop-color="#ff2e79" />
+                  <stop offset="100%" stop-color="#9e004f" />
+                </linearGradient>
+                <radialGradient id="heartAuraGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(255, 75, 145, 0.75)" />
+                  <stop offset="55%" stop-color="rgba(255, 75, 145, 0.25)" />
+                  <stop offset="100%" stop-color="rgba(255, 75, 145, 0)" />
+                </radialGradient>
+                <filter
+                  id="glowFilter"
+                  x="-40%"
+                  y="-40%"
+                  width="180%"
+                  height="180%"
+                >
+                  <feGaussianBlur stdDeviation="8" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+
+              <!-- Aiming trajectory dots -->
+              <g id="trajectory-dots" opacity="0.45"></g>
+
+              <!-- Bow Limb -->
+              <g id="bow-group" transform="translate(170, 210)">
+                <!-- Ambient glow behind bow -->
+                <circle
+                  cx="0"
+                  cy="0"
+                  r="110"
+                  fill="url(#heartAuraGrad)"
+                  opacity="0.35"
+                />
+                <!-- Bow Curve -->
+                <path
+                  id="bow-limb"
+                  d="M 0 -135 C 68 -95, 78 -35, 78 0 C 78 35, 68 95, 0 135"
+                  fill="none"
+                  stroke="url(#bowGold)"
+                  stroke-width="9"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M 4 -125 C 58 -88, 66 -30, 66 0 C 66 30, 58 88, 4 125"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.45)"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <!-- Decorative Grip -->
+                <rect
+                  x="71"
+                  y="-18"
+                  width="14"
+                  height="36"
+                  rx="6"
+                  fill="#fff0c2"
+                  stroke="#b96d22"
+                  stroke-width="2"
+                />
+                <!-- Bow Tips -->
+                <circle cx="0" cy="-135" r="6" fill="#fff0c2" />
+                <circle cx="0" cy="135" r="6" fill="#fff0c2" />
+
+                <!-- Dynamic Bow String -->
+                <polyline
+                  id="bow-string"
+                  points="0,-135 0,0 0,135"
+                  fill="none"
+                  stroke="#ffe9b3"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <!-- Pull Handle Ring (Visual cue on string) -->
+                <g id="pull-handle" transform="translate(0, 0)">
+                  <circle
+                    cx="0"
+                    cy="0"
+                    r="22"
+                    fill="rgba(255, 110, 170, 0.22)"
+                    stroke="#ff9ebb"
+                    stroke-width="1.5"
+                    stroke-dasharray="4 3"
+                    class="pull-ring-anim"
+                  />
+                  <circle cx="0" cy="0" r="7" fill="#fff0c2" />
+                </g>
+              </g>
+
+              <!-- Flying Golden Arrow -->
+              <g id="arrow-group" transform="translate(170, 210)">
+                <!-- Feather Fletching -->
+                <path d="M -8 -3 L -26 -14 L -18 -3 Z" fill="#ff6fa5" />
+                <path d="M -8 3 L -26 14 L -18 3 Z" fill="#ff3e82" />
+                <path d="M -18 -3 L -34 -12 L -26 -3 Z" fill="#ffe299" />
+                <path d="M -18 3 L -34 12 L -26 3 Z" fill="#f5b963" />
+                <!-- Arrow Shaft -->
+                <line
+                  x1="-28"
+                  y1="0"
+                  x2="115"
+                  y2="0"
+                  stroke="url(#bowGold)"
+                  stroke-width="5"
+                  stroke-linecap="round"
+                />
+                <!-- Heart-Shaped Golden Arrowhead -->
+                <path
+                  d="M 132 0 L 108 -13 C 113 -4, 113 4, 108 13 Z"
+                  fill="#fff0c2"
+                  stroke="#d4882a"
+                  stroke-width="1.5"
+                />
+              </g>
+
+              <!-- Target Glowing Heart (Right Side) -->
+              <g id="target-heart-group" transform="translate(735, 210)">
+                <circle
+                  cx="0"
+                  cy="0"
+                  r="115"
+                  fill="url(#heartAuraGrad)"
+                  class="target-aura-pulse"
+                />
+                <circle
+                  cx="0"
+                  cy="0"
+                  r="78"
+                  fill="none"
+                  stroke="rgba(255, 190, 215, 0.35)"
+                  stroke-width="1.5"
+                  stroke-dasharray="6 6"
+                  class="spin-slow"
+                />
+                <g id="target-heart-inner" class="floating-heart-target">
+                  <path
+                    d="M 0 -28 C 0 -28, -35 -68, -68 -36 C -100 -4, -58 46, 0 82 C 58 46, 100 -4, 68 -36 C 35 -68, 0 -28, 0 -28 Z"
+                    fill="url(#heartRuby)"
+                    stroke="#ffd6e6"
+                    stroke-width="2.5"
+                  />
+                  <!-- Specular Crystal Highlight -->
+                  <path
+                    d="M -46 -32 C -32 -46, -16 -34, -12 -24 C -24 -22, -38 -16, -46 -32 Z"
+                    fill="rgba(255, 255, 255, 0.55)"
+                  />
+                  <text
+                    x="0"
+                    y="16"
+                    text-anchor="middle"
+                    fill="#ffffff"
+                    font-family="Plus Jakarta Sans"
+                    font-weight="700"
+                    font-size="16"
+                    letter-spacing="1.5"
+                  >
+                    HIT ME 💖
+                  </text>
+                </g>
+              </g>
+            </svg>
+
+            <!-- Power Meter Pill -->
+            <div class="bow-controls-footer">
+              <div class="tension-pill">
+                <span>Draw Power:</span>
+                <div class="tension-bar">
+                  <div class="tension-fill" id="tension-fill"></div>
+                </div>
+                <span id="tension-percent">0%</span>
+              </div>
+              <button
+                id="quick-shoot-btn"
+                class="secondary-luxury-btn"
+                title="Tap if you prefer one-click release"
+              >
+                🏹 Pull &amp; Release Arrow
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+         STAGE 3: HEART BLAST REVEAL + GLOWING HEART TREE + TURNING 26
+         ========================================== -->
+      <section id="stage-3" class="stage">
+        <div class="stage-3-layout">
+          <!-- Left/Top: Grand Celebration Typography & Story Cards -->
+          <div class="celebration-copy glass-card">
+            <div class="official-badge">
+              <span>👑 IT'S OFFICIALLY YOUR DAY ✨</span>
+            </div>
+
+            <h1 class="grand-bday-title">
+              Happy Birthday, <span class="script-name">Supraja</span> 💖
+            </h1>
+
+            <p class="worth-celebrating-quote">
+              “To someone truly worth celebrating — today, tomorrow, and every
+              single day.” 🥂🌸
+            </p>
+
+            <div class="story-cards-grid">
+              <div class="story-mini-card reveal-stagger-1">
+                <span class="mini-emoji">🌟</span>
+                <div>
+                  <h3>It’s Officially Your Day!</h3>
+                  <p>
+                    The stars aligned 26 years ago to bring the brightest,
+                    kindest soul into this world.
+                  </p>
+                </div>
+              </div>
+
+              <div class="story-mini-card highlight-26-card reveal-stagger-2">
+                <div class="age-badge-26">26</div>
+                <div>
+                  <h3>And Just Like That… You’re Turning 26! 🥂✨</h3>
+                  <p>
+                    26 chapters of grace, laughter, resilience, and magic — and
+                    your most breathtaking chapters are just beginning!
+                  </p>
+                </div>
+              </div>
+
+              <div class="story-mini-card reveal-stagger-3">
+                <span class="mini-emoji">💐</span>
+                <div>
+                  <h3>Someone Worth Celebrating</h3>
+                  <p>
+                    May this year wrap you in endless happiness, warm hugs, and
+                    dreams coming true.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="stage-3-cta">
+              <button id="to-cake-btn" class="luxury-btn pulse-btn">
+                <span>🎂 First Things First… Let’s Celebrate! →</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right/Bottom: Interactive Glowing Heart Tree Canvas -->
+          <div class="heart-tree-card glass-card">
+            <div class="tree-card-header">
+              <span class="tree-badge"
+                >🌳 The Glowing Heart Tree of 26 Wishes</span
+              >
+              <span class="tree-hint"
+                >Tap anywhere on the tree to bloom extra hearts 💕</span
+              >
+            </div>
+            <div class="tree-canvas-wrap">
+              <canvas id="heart-tree-canvas" width="540" height="520"></canvas>
+              <div class="tree-ground-glow"></div>
+            </div>
+            <p class="tree-caption">
+              Every glowing heart leaf blooms for a memory, a smile, and a wish
+              for your 26th year ✨
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+         STAGE 4: FIRST THINGS FIRST — CAKE, BLOW CANDLE & CUT CAKE
+         ========================================== -->
+      <section id="stage-4" class="stage">
+        <div class="glass-card cake-stage-card">
+          <p class="eyebrow-tag" id="cake-eyebrow">
+            FIRST THINGS FIRST... 🎂✨
+          </p>
+          <h2 class="section-heading" id="cake-heading">
+            Close Your Eyes &amp; Make a Birthday Wish! 🌟
+          </h2>
+          <p class="subtitle-text" id="cake-subtext">
+            Tap the glowing candle flame (or blow gently into your microphone!)
+            to blow out your 26th birthday candle 🕯️💨
+          </p>
+
+          <!-- Interactive Cake Stage -->
+          <div class="cake-arena" id="cake-arena">
+            <!-- Floating Wish Aura -->
+            <div class="wish-sparkles" id="wish-sparkles">
+              <span>✨ Make a Wish ✨</span>
+            </div>
+
+            <!-- SVG Luxury Multi-Tier Birthday Cake -->
+            <div class="cake-svg-wrapper" id="cake-interactive-area">
+              <svg
+                id="cake-svg"
+                viewBox="0 0 500 430"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <defs>
+                  <linearGradient
+                    id="plateGrad"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="0%"
+                  >
+                    <stop offset="0%" stop-color="#f6d365" />
+                    <stop offset="50%" stop-color="#fff3d1" />
+                    <stop offset="100%" stop-color="#fda085" />
+                  </linearGradient>
+                  <linearGradient
+                    id="tierBottomGrad"
+                    x1="0%"
+                    y1="0%"
+                    x2="0%"
+                    y2="100%"
+                  >
+                    <stop offset="0%" stop-color="#ff85b3" />
+                    <stop offset="100%" stop-color="#d83a7c" />
+                  </linearGradient>
+                  <linearGradient
+                    id="tierTopGrad"
+                    x1="0%"
+                    y1="0%"
+                    x2="0%"
+                    y2="100%"
+                  >
+                    <stop offset="0%" stop-color="#ffb8d2" />
+                    <stop offset="100%" stop-color="#f25c9c" />
+                  </linearGradient>
+                  <linearGradient
+                    id="frostingGrad"
+                    x1="0%"
+                    y1="0%"
+                    x2="0%"
+                    y2="100%"
+                  >
+                    <stop offset="0%" stop-color="#fffDF9" />
+                    <stop offset="100%" stop-color="#ffe3ee" />
+                  </linearGradient>
+                  <radialGradient id="flameGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="rgba(255, 220, 100, 0.9)" />
+                    <stop offset="50%" stop-color="rgba(255, 130, 50, 0.35)" />
+                    <stop offset="100%" stop-color="rgba(255, 130, 50, 0)" />
+                  </radialGradient>
+                </defs>
+
+                <!-- Cake Pedestal / Golden Stand -->
+                <ellipse
+                  cx="250"
+                  cy="392"
+                  rx="110"
+                  ry="16"
+                  fill="#d99b4e"
+                  opacity="0.55"
+                />
+                <path
+                  d="M 215 350 L 285 350 L 310 390 L 190 390 Z"
+                  fill="url(#plateGrad)"
+                />
+                <ellipse
+                  cx="250"
+                  cy="350"
+                  rx="185"
+                  ry="22"
+                  fill="url(#plateGrad)"
+                  stroke="#fff7df"
+                  stroke-width="2"
+                />
+
+                <!-- LEFT HALF OF CAKE -->
+                <g id="cake-left-half">
+                  <!-- Bottom Tier Left -->
+                  <path
+                    d="M 95 245 L 250 245 L 250 350 L 95 350 C 95 350, 88 295, 95 245 Z"
+                    fill="url(#tierBottomGrad)"
+                  />
+                  <!-- Frosting Drips Bottom Left -->
+                  <path
+                    d="M 92 245 Q 112 275 130 250 Q 150 282 172 250 Q 192 278 212 250 Q 232 280 250 252 L 250 236 L 92 236 Z"
+                    fill="url(#frostingGrad)"
+                  />
+                  <!-- Golden Pearls Bottom Left -->
+                  <circle cx="110" cy="345" r="6" fill="#ffe6a3" />
+                  <circle cx="130" cy="347" r="6" fill="#ffe6a3" />
+                  <circle cx="150" cy="348" r="6" fill="#ffe6a3" />
+                  <circle cx="170" cy="349" r="6" fill="#ffe6a3" />
+                  <circle cx="190" cy="350" r="6" fill="#ffe6a3" />
+                  <circle cx="210" cy="350" r="6" fill="#ffe6a3" />
+                  <circle cx="230" cy="350" r="6" fill="#ffe6a3" />
+                  <circle cx="246" cy="350" r="6" fill="#ffe6a3" />
+
+                  <!-- Top Tier Left -->
+                  <path
+                    d="M 135 155 L 250 155 L 250 242 L 135 242 Z"
+                    fill="url(#tierTopGrad)"
+                  />
+                  <!-- Frosting Drips Top Left -->
+                  <path
+                    d="M 133 155 Q 150 180 168 158 Q 186 184 205 158 Q 226 182 250 160 L 250 144 L 133 144 Z"
+                    fill="url(#frostingGrad)"
+                  />
+                  <!-- Strawberries / Cherries Left -->
+                  <circle cx="152" cy="142" r="9" fill="#ff1e56" />
+                  <circle cx="188" cy="142" r="9" fill="#ff1e56" />
+                  <circle cx="222" cy="142" r="9" fill="#ff1e56" />
+                </g>
+
+                <!-- INNER CAKE SLICE REVEAL (Visible when cake is cut!) -->
+                <g id="cake-slice-center" opacity="0">
+                  <rect
+                    x="242"
+                    y="150"
+                    width="16"
+                    height="198"
+                    fill="#fff0f5"
+                  />
+                  <line
+                    x1="242"
+                    y1="185"
+                    x2="258"
+                    y2="185"
+                    stroke="#ff2e79"
+                    stroke-width="5"
+                  />
+                  <line
+                    x1="242"
+                    y1="215"
+                    x2="258"
+                    y2="215"
+                    stroke="#ff9ebb"
+                    stroke-width="5"
+                  />
+                  <line
+                    x1="242"
+                    y1="275"
+                    x2="258"
+                    y2="275"
+                    stroke="#ff2e79"
+                    stroke-width="6"
+                  />
+                  <line
+                    x1="242"
+                    y1="312"
+                    x2="258"
+                    y2="312"
+                    stroke="#ffb3c6"
+                    stroke-width="6"
+                  />
+                </g>
+
+                <!-- RIGHT HALF OF CAKE (Separates slightly when sliced!) -->
+                <g id="cake-right-half">
+                  <!-- Bottom Tier Right -->
+                  <path
+                    d="M 250 245 L 405 245 C 412 295, 405 350, 405 350 L 250 350 Z"
+                    fill="url(#tierBottomGrad)"
+                  />
+                  <!-- Frosting Drips Bottom Right -->
+                  <path
+                    d="M 250 252 Q 270 280 290 250 Q 312 278 332 250 Q 355 282 375 250 Q 392 275 408 245 L 408 236 L 250 236 Z"
+                    fill="url(#frostingGrad)"
+                  />
+                  <!-- Golden Pearls Bottom Right -->
+                  <circle cx="264" cy="350" r="6" fill="#ffe6a3" />
+                  <circle cx="284" cy="350" r="6" fill="#ffe6a3" />
+                  <circle cx="304" cy="350" r="6" fill="#ffe6a3" />
+                  <circle cx="324" cy="349" r="6" fill="#ffe6a3" />
+                  <circle cx="344" cy="348" r="6" fill="#ffe6a3" />
+                  <circle cx="364" cy="347" r="6" fill="#ffe6a3" />
+                  <circle cx="384" cy="345" r="6" fill="#ffe6a3" />
+
+                  <!-- Top Tier Right -->
+                  <path
+                    d="M 250 155 L 365 155 L 365 242 L 250 242 Z"
+                    fill="url(#tierTopGrad)"
+                  />
+                  <!-- Frosting Drips Top Right -->
+                  <path
+                    d="M 250 160 Q 274 182 295 158 Q 314 184 332 158 Q 350 180 367 155 L 367 144 L 250 144 Z"
+                    fill="url(#frostingGrad)"
+                  />
+                  <!-- Strawberries / Cherries Right -->
+                  <circle cx="278" cy="142" r="9" fill="#ff1e56" />
+                  <circle cx="312" cy="142" r="9" fill="#ff1e56" />
+                  <circle cx="348" cy="142" r="9" fill="#ff1e56" />
+                </g>
+
+                <!-- Cake Plaque: "26" -->
+                <g id="cake-plaque">
+                  <rect
+                    x="182"
+                    y="280"
+                    width="136"
+                    height="44"
+                    rx="22"
+                    fill="#fffDF9"
+                    stroke="#f5b963"
+                    stroke-width="2.5"
+                  />
+                  <text
+                    x="250"
+                    y="308"
+                    text-anchor="middle"
+                    fill="#c91860"
+                    font-family="Great Vibes"
+                    font-size="28"
+                  >
+                    Supraja • 26
+                  </text>
+                </g>
+
+                <!-- Birthday Candle & Interactive Flame -->
+                <g id="candle-group" style="cursor: pointer">
+                  <!-- Candle Body -->
+                  <rect
+                    x="240"
+                    y="82"
+                    width="20"
+                    height="62"
+                    rx="6"
+                    fill="#fffdf9"
+                    stroke="#ffd1dc"
+                    stroke-width="1.5"
+                  />
+                  <line
+                    x1="241"
+                    y1="98"
+                    x2="259"
+                    y2="108"
+                    stroke="#ff4b91"
+                    stroke-width="3.5"
+                  />
+                  <line
+                    x1="241"
+                    y1="118"
+                    x2="259"
+                    y2="128"
+                    stroke="#ff4b91"
+                    stroke-width="3.5"
+                  />
+                  <line
+                    x1="250"
+                    y1="74"
+                    x2="250"
+                    y2="82"
+                    stroke="#4a3531"
+                    stroke-width="2.5"
+                  />
+
+                  <!-- Golden "26" Topper Badges beside candle -->
+                  <text
+                    x="212"
+                    y="132"
+                    fill="#ffe6a3"
+                    font-family="Cormorant Garamond"
+                    font-weight="700"
+                    font-size="28"
+                    stroke="#b56c1b"
+                    stroke-width="0.8"
+                  >
+                    2
+                  </text>
+                  <text
+                    x="272"
+                    y="132"
+                    fill="#ffe6a3"
+                    font-family="Cormorant Garamond"
+                    font-weight="700"
+                    font-size="28"
+                    stroke="#b56c1b"
+                    stroke-width="0.8"
+                  >
+                    6
+                  </text>
+
+                  <!-- Flame Group (Hidden when blown out) -->
+                  <g id="candle-flame-group" class="flame-flicker">
+                    <circle cx="250" cy="52" r="46" fill="url(#flameGlow)" />
+                    <!-- Outer Flame -->
+                    <path
+                      d="M 250 18 C 250 18, 270 44, 264 62 C 259 73, 241 73, 236 62 C 230 44, 250 18, 250 18 Z"
+                      fill="#ff9d00"
+                    />
+                    <!-- Inner Flame -->
+                    <path
+                      d="M 250 30 C 250 30, 262 48, 258 61 C 255 68, 245 68, 242 61 C 238 48, 250 30, 250 30 Z"
+                      fill="#fff394"
+                    />
+                    <!-- Core -->
+                    <ellipse cx="250" cy="63" rx="4" ry="6" fill="#ffffff" />
+                  </g>
+
+                  <!-- Smoke Wisps (Shown after candle is blown out) -->
+                  <g id="candle-smoke-group" class="hidden">
+                    <path
+                      class="smoke-wisp wisp-1"
+                      d="M 250 70 Q 238 52 254 36 Q 266 20 246 6"
+                      fill="none"
+                      stroke="rgba(255,255,255,0.65)"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      class="smoke-wisp wisp-2"
+                      d="M 252 66 Q 266 48 248 30 Q 236 16 256 2"
+                      fill="none"
+                      stroke="rgba(255,255,255,0.45)"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                    />
+                  </g>
+                </g>
+
+                <!-- Golden Cake Knife (Appears after blowing out the candle) -->
+                <g
+                  id="cake-knife"
+                  class="hidden"
+                  transform="translate(265, 55)"
+                >
+                  <path
+                    d="M 0 0 L 95 -28 L 105 -12 L 10 20 Z"
+                    fill="#fff6d6"
+                    stroke="#d49b3b"
+                    stroke-width="2"
+                  />
+                  <rect
+                    x="95"
+                    y="-30"
+                    width="48"
+                    height="16"
+                    rx="8"
+                    transform="rotate(-16 95 -30)"
+                    fill="#ff4b91"
+                    stroke="#ffe6a3"
+                    stroke-width="2"
+                  />
+                </g>
+              </svg>
+            </div>
+
+            <!-- Interactive Controls for Blowing Candle & Cutting Cake -->
+            <div class="cake-actions">
+              <button id="blow-candle-btn" class="luxury-btn pulse-btn">
+                <span>🕯️ Blow Out the Candle (Tap or Blow!)</span>
+              </button>
+              <button id="mic-blow-btn" class="secondary-luxury-btn">
+                <span>🎙️ Enable Mic to Blow for Real</span>
+              </button>
+              <button id="cut-cake-btn" class="luxury-btn pulse-btn hidden">
+                <span>🔪 Cut the Birthday Cake! ✨</span>
+              </button>
+            </div>
+
+            <!-- Tap Anywhere to Continue Prompt (Appears after cutting the cake) -->
+            <div
+              id="tap-anywhere-banner"
+              class="tap-anywhere-banner hidden"
+              role="button"
+              tabindex="0"
+            >
+              <p class="wish-locked-msg">
+                🎉 Yay! Wish locked in the stars &amp; first slice served to the
+                birthday queen! 🍰👑
+              </p>
+              <div class="tap-anywhere-pill">
+                <span>✨ Tap anywhere to continue to your balloons →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+         STAGE 5: POP THE BALLOONS — UNIQUE MESSAGES
+         ========================================== -->
+      <section id="stage-5" class="stage">
+        <div class="glass-card balloons-stage-card">
+          <div class="balloons-header">
+            <p class="eyebrow-tag">POP THE BALLOONS 🎈💥</p>
+            <h2 class="section-heading">
+              7 Birthday Balloons, 7 Truths About You 💖
+            </h2>
+            <p class="subtitle-text">
+              Tap each floating balloon to pop it and reveal the secret note
+              hidden inside!
+            </p>
+            <div class="balloon-progress-pill">
+              <span id="balloon-count-text">0 / 7 Balloons Popped</span>
+            </div>
+          </div>
+
+          <!-- Floating Balloons Arena -->
+          <div class="balloons-arena" id="balloons-arena">
+            <!-- Populated dynamically by script.js with 7 glossy balloons -->
+          </div>
+
+          <!-- Revealed Messages Collection -->
+          <div class="popped-messages-tray" id="popped-messages-tray">
+            <div class="popped-latest-banner" id="popped-latest-banner">
+              <span class="latest-icon">🎈</span>
+              <p id="popped-latest-text">
+                Tap any balloon above to pop it and read its message!
+              </p>
+            </div>
+            <div class="popped-chips-list" id="popped-chips-list"></div>
+          </div>
+
+          <div class="balloons-footer">
+            <button id="to-letter-btn" class="luxury-btn pulse-btn hidden">
+              <span>💌 One Last Thing… Open Your Birthday Letter →</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+         STAGE 6: ONE LAST THING — ENVELOPE & HEARTFELT LETTER + REPLAY
+         ========================================== -->
+      <section id="stage-6" class="stage">
+        <div class="glass-card letter-stage-card">
+          <div id="envelope-intro-header" class="envelope-header">
+            <p class="eyebrow-tag">ONE LAST THING... 💌✨</p>
+            <h2 class="section-heading">
+              A Special Note Sealed Just for Supraja
+            </h2>
+            <p class="subtitle-text">
+              Tap the golden wax seal on the envelope to open your 26th birthday
+              letter.
+            </p>
+          </div>
+
+          <!-- 3D Envelope Wrapper -->
+          <div id="envelope-scene" class="envelope-scene">
+            <div
+              class="envelope-wrapper"
+              id="envelope-trigger"
+              role="button"
+              tabindex="0"
+              aria-label="Open Birthday Letter"
+            >
+              <div class="envelope-back"></div>
+
+              <!-- Letter Preview Inside Envelope -->
+              <div class="envelope-letter-preview">
+                <p class="preview-script">Dearest Supraja,</p>
+                <p class="preview-sub">Happy 26th Birthday ✨</p>
+              </div>
+
+              <!-- Front Folds -->
+              <div class="envelope-fold-left"></div>
+              <div class="envelope-fold-right"></div>
+              <div class="envelope-fold-bottom"></div>
+
+              <!-- Top Flap (Animates open in 3D) -->
+              <div class="envelope-flap" id="envelope-flap"></div>
+
+              <!-- Golden Heart Wax Seal -->
+              <div class="wax-seal" id="wax-seal">
+                <span class="seal-letter">S</span>
+                <span class="seal-heart">♥</span>
+              </div>
+            </div>
+
+            <button id="open-envelope-btn" class="luxury-btn pulse-btn">
+              <span>💌 Tap to Break the Seal &amp; Read</span>
+            </button>
+          </div>
+
+          <!-- Full Unfolded Letter Modal / View -->
+          <div id="full-letter-view" class="full-letter-view hidden">
+            <div class="parchment-letter">
+              <div class="letter-corner corner-tl">✦</div>
+              <div class="letter-corner corner-tr">✦</div>
+              <div class="letter-corner corner-bl">✦</div>
+              <div class="letter-corner corner-br">✦</div>
+
+              <div class="letter-top-stamp">
+                <span class="stamp-tag">OCTOBER • TURNING 26</span>
+                <span class="stamp-icons">🌸 👑 ✨</span>
+              </div>
+
+              <h2 class="letter-salutation">Dearest Supraja,</h2>
+
+              <div class="letter-body">
+                <p>
+                  Happy, happy <strong>26th Birthday</strong> to someone who
+                  effortlessly makes the world brighter, warmer, and so much
+                  more beautiful just by being in it! 🎉💖
+                </p>
+                <p>
+                  Look at you — officially turning <strong>26</strong>! Every
+                  year you grow more graceful, more inspiring, and even more
+                  radiant. You have this rare, magical way of bringing comfort,
+                  laughter, and genuine kindness to everyone lucky enough to
+                  know you.
+                </p>
+                <p>
+                  On your special day, I want you to pause, take a deep breath,
+                  and remember how deeply you are appreciated and celebrated.
+                  May your 26th chapter be overflowing with:
+                </p>
+                <ul class="letter-wishes-list">
+                  <li>
+                    ✨ Mornings that start with peace, excitement, and your
+                    favorite smile
+                  </li>
+                  <li>
+                    🌸 Dreams that unfold even more beautifully than you
+                    imagined
+                  </li>
+                  <li>
+                    🥂 Unforgettable adventures, belly laughs, and pure
+                    happiness
+                  </li>
+                  <li>
+                    💖 People and moments that cherish your heart the way you
+                    deserve
+                  </li>
+                </ul>
+                <p>
+                  Never stop shining, never stop dreaming, and never forget that
+                  today and always —
+                  <strong>you are someone truly worth celebrating.</strong>
+                </p>
+              </div>
+
+              <div class="letter-signature-block">
+                <p class="sig-warmth">
+                  With endless warmth, smiles &amp; birthday magic,
+                </p>
+                <p class="sig-script">Happy 26th Birthday, Supraja! 🥂👑💐</p>
+              </div>
+            </div>
+
+            <!-- Replay Button & Extra Confetti Button -->
+            <div class="letter-actions-row">
+              <button id="celebrate-shower-btn" class="secondary-luxury-btn">
+                <span>🎆 Shower More Confetti &amp; Hearts</span>
+              </button>
+              <button id="replay-surprise-btn" class="luxury-btn pulse-btn">
+                <span>↺ Replay the Surprise from Beginning</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
